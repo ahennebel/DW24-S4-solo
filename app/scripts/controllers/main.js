@@ -1,4 +1,5 @@
 'use strict';
+// jscs:disable requireCamelCaseOrUpperCaseIdentifiers
 
 /**
  * @ngdoc function
@@ -18,33 +19,24 @@ angular.module('movieExplorerApp')
     {
       ctrl.movies = result;
 
-      movies.getConfiguration().then(function(result)
-      {
-      	ctrl.configuration = result;
-      }).then(function(){
+      
     	angular.forEach(ctrl.movies, function(movie) 
     	{
     		if(movie.backdrop_path)
     		{
-    			ctrl.slides.push(ctrl.getImageURL(movie.backdrop_path,'w780'));
+    			movies.getImageURL(movie.backdrop_path,'w780').then(function(imageUrl)
+    			{
+    				ctrl.slides.push(imageUrl);
+    			});    			
     		}
     	});
 
     	ctrl.currentSlide = 0;
-      });
+      
     });
 
-    ctrl.getImageURL = function(path, size)
-    {
-    	if(ctrl.configuration)
-    	{
-    		return ctrl.configuration.images.secure_base_url + size + path;
-    	}else{
-    		return null;
-    	}
-    };
 
-    ctrl.getNextSideIndex = function()
+    ctrl.getNextSlideIndex = function()
     {
     	if(ctrl.currentSlide === ctrl.slides.lengh -1)
     	{
@@ -53,7 +45,7 @@ angular.module('movieExplorerApp')
     	return ctrl.currentSlide + 1;
     };
 
-    ctrl.getPreviousSideIndex = function()
+    ctrl.getPreviousSlideIndex = function()
     {
     	if(ctrl.currentSlide === 0)
     	{
@@ -82,4 +74,10 @@ angular.module('movieExplorerApp')
     	return '';
     };
 
+    ctrl.gotoSlide = function(index)
+    {
+    	ctrl.currentSlide = index;
+    };
+
   });
+// jscs:enable requireCamelCaseOrUpperCaseIdentifiers

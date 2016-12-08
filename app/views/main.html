@@ -6,7 +6,7 @@ Ce fichier modifié/complété pour construire n'importe quelle structure html/c
 -->
 <div class="slideshow">
 	<div class="slideshow_item" ng-repeat="slide in main.slides track by $index" ng-if="main.slideIsVisible($index)" ng-class="main.getSlideClass($index)">		
-		<img ng-src="{{slide}}"/>
+		<img ng-src="{{slide}}" ng-click="main.gotoSlide($index)"/>
 	</div>
 </div>
 

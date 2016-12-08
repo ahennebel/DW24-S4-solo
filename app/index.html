@@ -97,7 +97,7 @@
     </div>
     
 
-    <div class="content container">
+    <div class="content container" ng-class="{'slide-menu-visible': executionContext.slideMenuIsVisible}">
       <!-- C'est ici que le contenu de la vue est injectée -->
     <div ng-view=""></div>
     </div>
