@@ -48,9 +48,9 @@ module.exports = function (grunt) {
         files: ['test/spec/{,*/}*.js'],
         tasks: ['newer:jshint:test', 'newer:jscs:test', 'karma']
       },
-      styles: {
-        files: ['<%= yeoman.app %>/styles/{,*/}*.css'],
-        tasks: ['newer:copy:styles', 'postcss']
+      sass: {
+        files: ['<%= yeoman.app %>/styles/{,*/}*.{scss,sass}'],
+        tasks: ['sass:server']
       },
       gruntfile: {
         files: ['Gruntfile.js']
@@ -221,6 +221,32 @@ module.exports = function (grunt) {
           }
       }
     }, 
+
+    sass: {
+        options: {
+            includePaths: [
+                'bower_components'
+            ]
+        },
+        dist: {
+            files: [{
+                expand: true,
+                cwd: '<%= yeoman.app %>/styles',
+                src: ['*.scss'],
+                dest: '.tmp/styles',
+                ext: '.css'
+            }]
+        },
+        server: {
+            files: [{
+                expand: true,
+                cwd: '<%= yeoman.app %>/styles',
+                src: ['*.scss'],
+                dest: '.tmp/styles',
+                ext: '.css'
+            }]
+        }
+    },
 
     // Renames files for browser caching purposes
     filerev: {
@@ -394,19 +420,30 @@ module.exports = function (grunt) {
         cwd: '<%= yeoman.app %>/styles',
         dest: '.tmp/styles/',
         src: '{,*/}*.css'
+      },
+      fonts:{
+        expand: true,
+        flatten: true,
+        src: 'bower_components/components-font-awesome/fonts/*',
+        dest: 'dist/fonts'
       }
     },
 
     // Run some tasks in parallel to speed up the build process
     concurrent: {
       server: [
-        'copy:styles'
+        'sass:server',
+        'copy:styles',
+        'copy:fonts'
       ],
       test: [
-        'copy:styles'
+        'copy:styles',
+        'copy:fonts'
       ],
       dist: [
+        'sass',
         'copy:styles',
+        'copy:fonts',
         'imagemin',
         'svgmin'
       ]

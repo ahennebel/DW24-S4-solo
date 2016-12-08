@@ -1,0 +1,30 @@
+@import 'common.scss';
+
+.main{
+  background-color: $colorWhite;
+  font-family: $fontDefault;
+  color: $colorDark;
+  padding: 0px;
+  margin: 0px;
+  width: 100%;
+  min-height: 100%;
+
+  a {
+    text-decoration: none;
+    color: $colorDark;
+      &:hover, &:visited {
+        text-decoration:none;
+        color: $colorDark;
+      }
+      .label {
+        font-family: $fontDefault;
+      }
+  }
+ 
+  .content {
+    @include margin($headerBoxHeight null null null);
+  }
+}
+@import 'header.scss';
+@import 'responsive.scss';
+@import 'sidescreen.scss';

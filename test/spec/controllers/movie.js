@@ -17,7 +17,4 @@ describe('Controller: MovieCtrl', function () {
     });
   }));
 
-  it('should attach a list of awesomeThings to the scope', function () {
-    expect(MovieCtrl.awesomeThings.length).toBe(3);
-  });
 });
