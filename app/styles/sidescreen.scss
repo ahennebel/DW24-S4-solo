@@ -70,5 +70,9 @@
 			&.ng-hide-add, &.ng-hide-remove, &.ng-hide {
 				@include transition(all $ease-out-sine 0.35s);
 			}
+
+			&.ng-hide {
+				@include transform(translateX(100%));
+			}
 	}	
 }
