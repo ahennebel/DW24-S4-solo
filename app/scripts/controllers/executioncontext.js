@@ -11,13 +11,13 @@ angular.module('movieExplorerApp')
   .controller('ExecutionContextCtrl', function () {
     var ctrl = this;
 
-    ctrl.slideMenuIsVisible = false;
+    ctrl.sideMenuIsVisible = false;
 
-    ctrl.openSlideMenu = function(){
-    	ctrl.slideMenuIsVisible = true;
+    ctrl.openSideMenu = function(){
+    	ctrl.sideMenuIsVisible = true;
     };
-    ctrl.closeSlideMenu = function(){
-    	ctrl.slideMenuIsVisible = false;
+    ctrl.closeSideMenu = function(){
+    	ctrl.sideMenuIsVisible = false;
     };
 
   });
